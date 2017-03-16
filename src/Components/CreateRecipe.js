@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import LocalStorage from '../Services/LocalStorage';
 
 class CreateRecipe extends Component {
     constructor(props) {
@@ -15,11 +16,16 @@ class CreateRecipe extends Component {
         this.setState(change);
     }
 
+    handleSubmit(event) {
+        event.preventDefault();
+        LocalStorage.save(this.state);
+    }
+
     render() {
         return (
             <div>
                 <h1>Create Recipe</h1>
-                <form>
+                <form onSubmit={this.handleSubmit.bind(this)}>
                     <div className="form-group">
                         <label htmlFor="name">Name</label>
                         <input
