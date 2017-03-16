@@ -8,10 +8,26 @@ class App extends Component {
     return (
         <Router>
             <div>
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/recipes/create">Add recipe</Link></li>
-                </ul>
+                <nav className="navbar navbar-inverse">
+                    <div className="container-fluid">
+                        <div className="navbar-header">
+                        <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span className="sr-only">Toggle navigation</span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                            <span className="icon-bar"></span>
+                        </button>
+                        <a className="navbar-brand" href="#">React Recipe box</a>
+                        </div>
+
+                        <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul className="nav navbar-nav navbar-right">
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/recipes/create">Add recipe</Link></li>
+                        </ul>
+                        </div>
+                    </div>
+                </nav>
 
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/recipes/create" component={CreateRecipe}/>
