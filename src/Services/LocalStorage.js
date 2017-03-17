@@ -4,14 +4,16 @@ const LocalStorage = {
     save(recipe) {
         // Save an empty array in local storage if it is empty
         if (!localStorage.getItem(storageName)) localStorage.setItem(storageName, JSON.stringify([]));
+        let recipes = JSON.parse(localStorage.getItem(storageName));
 
         let newRecipe = {
+            id: recipes.length + 1,
             name: recipe.name,
             ingredients: recipe.ingredients
         }
 
         // Add a new recipe to array
-        let recipes = JSON.parse(localStorage.getItem(storageName)).concat(newRecipe);
+        recipes = recipes.concat(newRecipe);
 
         // Save to local storage
         localStorage.setItem(storageName, JSON.stringify(recipes));
