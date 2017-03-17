@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
-import Recipe from './Recipe';
+import { Link } from 'react-router-dom';
 import LocalStorage from '../Services/LocalStorage';
 
 class Home extends Component {
