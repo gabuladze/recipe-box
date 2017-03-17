@@ -27,7 +27,7 @@ class Home extends Component {
                     }
                 </ul>
 
-                <Route path="/recipe/:id" component={Recipe} />
+                
             </div>
         );
     }
