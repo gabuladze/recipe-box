@@ -19,16 +19,16 @@ const LocalStorage = {
         localStorage.setItem(storageName, JSON.stringify(recipes));
     },
 
-    get(name = null) {
+    get(id = null) {
         // Get the string containing all objects & parse it
         let recipes = JSON.parse(localStorage.getItem(storageName)) || [];
 
-        // If no name return all recipes
-        if (!name) {
+        // If no id return all recipes
+        if (!id) {
             return recipes;
         } else {
             let filteredRecipes = recipes.filter(recipe => {
-                return recipe.name === name;
+                return recipe.id === id;
             });
 
             return filteredRecipes[0];
