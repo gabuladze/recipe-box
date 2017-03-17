@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
+import Recipe from './Recipe';
 import LocalStorage from '../Services/LocalStorage';
 
 class Home extends Component {
@@ -18,10 +20,14 @@ class Home extends Component {
                 <ul>
                     {
                         this.state.recipes.map((recipe, index) => {
-                            return <li key={index}>{recipe.name}</li>;
+                            return (<li key={index}>
+                                        <Link to={`/recipe/${recipe.id}`}>{recipe.name}</Link>
+                                    </li>);
                         })
                     }
                 </ul>
+
+                <Route path="/recipe/:id" component={Recipe} />
             </div>
         );
     }
