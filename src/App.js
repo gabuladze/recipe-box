@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import Home from './Components/Home';
 import CreateRecipe from './Components/CreateRecipe';
 import Recipe from './Components/Recipe';
@@ -31,13 +31,14 @@ class App extends Component {
                         </div>
                     </div>
                 </nav>
+                <Switch>
+                    <Route exact path="/" component={Home}/>
+                    <Route path="/recipes/create" component={CreateRecipe}/>
 
-                <Route exact path="/" component={Home}/>
-                <Route path="/recipes/create" component={CreateRecipe}/>
-
-                <Route path="/recipe/:id" component={Recipe} />
-                <Route path="/recipe/:id/edit" component={EditRecipe} />
-                <Route path="/recipe/:id/delete" component={DeleteRecipe} />
+                    <Route exact path="/recipe/:id" component={Recipe} />
+                    <Route path="/recipe/:id/edit" component={EditRecipe} />
+                    <Route path="/recipe/:id/delete" component={DeleteRecipe} />
+                </Switch>
             </div>
         </Router>
     );
