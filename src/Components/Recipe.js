@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import LocalStorage from '../Services/LocalStorage';
 
 class Recipe extends Component {
@@ -15,17 +16,20 @@ class Recipe extends Component {
         return (
             <div>
                 {this.state.recipe.name &&
-                <div>
-                    <h1>{this.state.recipe.name}</h1>
-                    <h3>Ingredients</h3>
-                    <ul>
-                        {
-                            this.state.recipe.ingredients.split(',').map((ingredient, index) => {
-                                return <li key={index}>{ingredient}</li>;
-                            })
-                        }
-                    </ul>
-                </div>
+                    <div>
+                        <h1>{this.state.recipe.name}</h1>
+                        <h3>Ingredients</h3>
+                        <ul>
+                            {
+                                this.state.recipe.ingredients.split(',').map((ingredient, index) => {
+                                    return <li key={index}>{ingredient}</li>;
+                                })
+                            }
+                        </ul>
+                        <hr />
+                        <Link to="/recipe/:id/edit">Delete Recipe</Link>
+                        <Link to="/recipe/:id/delete">Delete Recipe</Link>
+                    </div>
                 }
             </div>
         );
