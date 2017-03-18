@@ -30,7 +30,7 @@ const LocalStorage = {
             let filteredRecipes = recipes.filter(recipe => {
                 return recipe.id === id;
             });
-
+            
             return filteredRecipes[0];
         }
     },
