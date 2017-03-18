@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Home from './Components/Home';
 import CreateRecipe from './Components/CreateRecipe';
 import Recipe from './Components/Recipe';
+import EditRecipe from './Components/EditRecipe';
+import DeleteRecipe from './Components/DeleteRecipe';
 
 class App extends Component {
   render() {
@@ -31,8 +33,11 @@ class App extends Component {
                 </nav>
 
                 <Route exact path="/" component={Home}/>
-                <Route exact path="/recipes/create" component={CreateRecipe}/>
+                <Route path="/recipes/create" component={CreateRecipe}/>
+
                 <Route path="/recipe/:id" component={Recipe} />
+                <Route path="/recipe/:id/edit" component={EditRecipe} />
+                <Route path="/recipe/:id/delete" component={DeleteRecipe} />
             </div>
         </Router>
     );
