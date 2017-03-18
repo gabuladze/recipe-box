@@ -15,7 +15,7 @@ class Recipe extends Component {
     render() {
         return (
             <div>
-                {this.state.recipe.name &&
+                {this.state.recipe.hasOwnProperty('name') &&
                     <div>
                         <h1>{this.state.recipe.name}</h1>
                         <h3>Ingredients</h3>
@@ -27,8 +27,8 @@ class Recipe extends Component {
                             }
                         </ul>
                         <hr />
-                        <Link to="/recipe/:id/edit">Delete Recipe</Link>
-                        <Link to="/recipe/:id/delete">Delete Recipe</Link>
+                        <Link to={`/recipe/${this.state.recipe.id}/edit`} className="btn btn-warning">Edit Recipe</Link>
+                        <Link to={`/recipe/${this.state.recipe.id}/delete`} className="btn btn-danger">Delete Recipe</Link>
                     </div>
                 }
             </div>
