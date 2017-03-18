@@ -28,10 +28,10 @@ const LocalStorage = {
             return recipes;
         } else {
             let filteredRecipes = recipes.filter(recipe => {
-                return recipe.id === id;
+                return recipe.id == id;
             });
             
-            return filteredRecipes[0];
+            if (filteredRecipes.length === 1) return filteredRecipes[0];
         }
     },
 
