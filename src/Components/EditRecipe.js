@@ -1,30 +1,44 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import LocalStorage from '../Services/LocalStorage';
 
 class EditRecipe extends Component {
     constructor(props) {
         super(props);
-        this.state = { recipe: {} };
+        this.state = {
+            recipe: {},
+            redirectToIndex: false
+        };
     }
 
     componentDidMount() {
-        this.setState({recipe: LocalStorage.get(this.props.match.params.id)});
+        this.setState({ recipe: LocalStorage.get(this.props.match.params.id) });
     }
 
     handleSubmit(event) {
-
+        event.preventDefault();
+        LocalStorage.update(this.state.recipe);
+        this.setState({ redirectToIndex: true });
     }
 
-    handleChange(event, name) {
-        let change = {};
-        change[name] = event.target.value;
-        this.setState(change);
+    handleChange(event) {
+        let recipe = this.state.recipe;
+        const name = event.target.name;
+        recipe[name] = event.target.value
+        this.setState({
+            recipe: recipe
+        });
+        console.log(this.state);
     }
 
     render() {
+        const { redirectToIndex } = this.state;
+
+        if (redirectToIndex) return <Redirect to="/" />;
+
         return (
             <div>
-                {this.state.recipe.name &&
+                {(this.state.recipe.name) &&
                     <div>
                         <h1>Edit {this.state.recipe.name}</h1>
                         <form onSubmit={this.handleSubmit.bind(this)}>
@@ -34,18 +48,19 @@ class EditRecipe extends Component {
                                     type="text"
                                     className="form-control"
                                     placeholder="Name"
-                                    onChange={this.handleChange.bind(this, 'name')}
+                                    name="name"
+                                    onChange={this.handleChange.bind(this)}
                                     value={this.state.recipe.name} />
                             </div>
 
                             <div className="form-group">
                                 <label htmlFor="ingredients">Ingredients</label>
                                 <textarea
-                                    name="ingredients"
                                     className="form-control"
                                     rows="10"
                                     placeholder="Ingredients, separated, by, commas"
-                                    onChange={this.handleChange.bind(this, 'ingredients')}
+                                    name="ingredients"
+                                    onChange={this.handleChange.bind(this)}
                                     value={this.state.recipe.ingredients}></textarea>
                             </div>
 
