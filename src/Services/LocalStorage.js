@@ -53,13 +53,16 @@ const LocalStorage = {
         let recipes = JSON.parse(localStorage.getItem(storageName));
 
         // update recipe
-        recipes.map(r => {
+        let newRecipes = recipes.map(r => {
             if (r.id === recipe.id) {
                 r.name = recipe.name;
                 r.ingredients = recipe.ingredients;
                 return r;
             }
         });
+
+        // Save to local storage
+        localStorage.setItem(storageName, JSON.stringify(newRecipes));
     }
 };
 
