@@ -22,13 +22,12 @@ class EditRecipe extends Component {
     }
 
     handleChange(event) {
-        let recipe = this.state.recipe;
         const name = event.target.name;
+        
+        let recipe = this.state.recipe;
         recipe[name] = event.target.value
-        this.setState({
-            recipe: recipe
-        });
-        console.log(this.state);
+
+        this.setState({ recipe: recipe });
     }
 
     render() {
