@@ -48,11 +48,18 @@ const LocalStorage = {
         localStorage.setItem(storageName, JSON.stringify(newRecipes));
     },
 
-    update(recipeName) {
+    update(recipe) {
         // Get the string containing all objects & parse it
         let recipes = JSON.parse(localStorage.getItem(storageName));
 
-
+        // update recipe
+        recipes.map(r => {
+            if (r.id === recipe.id) {
+                r.name = recipe.name;
+                r.ingredients = recipe.ingredients;
+                return r;
+            }
+        });
     }
 };
 
