@@ -20,6 +20,7 @@ const LocalStorage = {
     },
 
     get(id = null) {
+
         // Get the string containing all objects & parse it
         let recipes = JSON.parse(localStorage.getItem(storageName)) || [];
 
@@ -27,15 +28,21 @@ const LocalStorage = {
         if (!id) {
             return recipes;
         } else {
+            // id has to be an int
+            id = Number.parseInt(id, 10);
+
             let filteredRecipes = recipes.filter(recipe => {
-                return recipe.id == id;
+                return recipe.id === id;
             });
-            
+
             if (filteredRecipes.length === 1) return filteredRecipes[0];
         }
     },
 
     deleteRecipe(id) {
+        // id has to be an int
+        id = Number.parseInt(id, 10);
+
         // Get the string containing all objects & parse it
         let recipes = JSON.parse(localStorage.getItem(storageName));
 
@@ -59,6 +66,7 @@ const LocalStorage = {
                 r.ingredients = recipe.ingredients;
                 return r;
             }
+            return r;
         });
 
         // Save to local storage
