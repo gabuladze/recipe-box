@@ -12,10 +12,9 @@ class CreateRecipe extends Component {
         }
     }
 
-    handleChange(name, event) {
-        let change = {};
-        change[name] = event.target.value;
-        this.setState(change);
+    handleChange(event) {
+        const name = event.target.name;
+        this.setState({ [name]: event.target.value });
     }
 
     handleSubmit(event) {
@@ -27,7 +26,7 @@ class CreateRecipe extends Component {
     render() {
         const { redirectToIndex } = this.state;
 
-        if(redirectToIndex) return <Redirect to="/"/>;
+        if (redirectToIndex) return <Redirect to="/" />;
 
         return (
             <div>
@@ -39,18 +38,19 @@ class CreateRecipe extends Component {
                             type="text"
                             className="form-control"
                             placeholder="Name"
-                            onChange={this.handleChange.bind(this, 'name')}
+                            name="name"
+                            onChange={this.handleChange.bind(this)}
                             value={this.state.name} />
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="ingredients">Ingredients</label>
                         <textarea
-                            name="ingredients"
                             className="form-control"
                             rows="10"
                             placeholder="Ingredients, separated, by, commas"
-                            onChange={this.handleChange.bind(this, 'ingredients')}
+                            name="ingredients"
+                            onChange={this.handleChange.bind(this)}
                             value={this.state.ingredients}></textarea>
                     </div>
 
