@@ -35,13 +35,13 @@ const LocalStorage = {
         }
     },
 
-    deleteRecipe(name) {
+    deleteRecipe(id) {
         // Get the string containing all objects & parse it
         let recipes = JSON.parse(localStorage.getItem(storageName));
 
         // Remove the item from array
         let newRecipes = recipes.filter(recipe => {
-            return recipe.name !== name;
+            return recipe.id !== id;
         });
 
         // Save to local storage
