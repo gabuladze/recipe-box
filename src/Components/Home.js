@@ -14,19 +14,18 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Home</h1>
-                <ul>
-                    {
-                        this.state.recipes.map((recipe, index) => {
-                            return (<li key={index}>
-                                        <Link to={`/recipe/${recipe.id}`}>{recipe.name}</Link>
-                                    </li>);
-                        })
-                    }
-                </ul>
-
-                
+            <div className="list-group">
+                {
+                    this.state.recipes.map((recipe, index) => {
+                        return (
+                            <Link 
+                                to={`/recipe/${recipe.id}`} 
+                                key={index} 
+                                className="list-group-item">
+                                    {recipe.name}
+                            </Link>);
+                    })
+                }
             </div>
         );
     }
