@@ -13,29 +13,31 @@ class Recipe extends Component {
     }
 
     render() {
-        return (
-            <div>
-                {this.state.recipe.hasOwnProperty('name') &&
-                    <div className="panel panel-default">
-                        <div className="panel-heading">{this.state.recipe.name}</div>
-                        <div className="panel-body">
-                            <h3>Ingredients</h3>
-                            <ul className="list-group">
-                                {
-                                    this.state.recipe.ingredients.split(',').map((ingredient, index) => {
-                                        return <li key={index} className="list-group-item">{ingredient}</li>;
-                                    })
-                                }
-                            </ul>
-                        </div>
-                        <div className="panel-footer">
-                            <Link to={`/recipe/${this.state.recipe.id}/edit`} className="btn btn-warning btn-sm">Edit Recipe</Link>
-                            <Link to={`/recipe/${this.state.recipe.id}/delete`} className="btn btn-danger btn-sm right">Delete Recipe</Link>
-                        </div>
+        const {recipe} = this.state;
+
+        if(recipe.hasOwnProperty('name')) {
+            return (
+                <div className="panel panel-default">
+                    <div className="panel-heading">{this.state.recipe.name}</div>
+                    <div className="panel-body">
+                        <h3>Ingredients</h3>
+                        <ul className="list-group">
+                            {
+                                this.state.recipe.ingredients.split(',').map((ingredient, index) => {
+                                    return <li key={index} className="list-group-item">{ingredient}</li>;
+                                })
+                            }
+                        </ul>
                     </div>
-                }
-            </div>
-        );
+                    <div className="panel-footer">
+                        <Link to={`/recipe/${this.state.recipe.id}/edit`} className="btn btn-warning btn-sm">Edit Recipe</Link>
+                        <Link to={`/recipe/${this.state.recipe.id}/delete`} className="btn btn-danger btn-sm right">Delete Recipe</Link>
+                    </div>
+                </div>
+            );
+        } else {
+            return <div>Loading...</div>;
+        }
     }
 }
 
