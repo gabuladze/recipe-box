@@ -41,44 +41,43 @@ class EditRecipe extends Component {
         const { redirectToIndex } = this.state;
 
         if (redirectToIndex) return <Redirect to="/" />;
+        if (this.state.recipe.name) {
+            return (
+                <div>
+                    <Prompt 
+                        when={this.formIsHalfFilled()}
+                        message="Are you sure you want to leave? Any changes will be unsaved." />
+                    <h1>Edit {this.state.recipe.name}</h1>
+                    <form onSubmit={this.handleSubmit.bind(this)}>
+                        <div className="form-group">
+                            <label htmlFor="name">Name</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                placeholder="Name"
+                                name="name"
+                                onChange={this.handleChange.bind(this)}
+                                value={this.state.recipe.name} />
+                        </div>
 
-        return (
-            <div>
-                <Prompt 
-                    when={this.formIsHalfFilled()}
-                    message="Are you sure you want to leave? Any changes will be unsaved." />
-                {(this.state.recipe.name) &&
-                    <div>
-                        <h1>Edit {this.state.recipe.name}</h1>
-                        <form onSubmit={this.handleSubmit.bind(this)}>
-                            <div className="form-group">
-                                <label htmlFor="name">Name</label>
-                                <input
-                                    type="text"
-                                    className="form-control"
-                                    placeholder="Name"
-                                    name="name"
-                                    onChange={this.handleChange.bind(this)}
-                                    value={this.state.recipe.name} />
-                            </div>
+                        <div className="form-group">
+                            <label htmlFor="ingredients">Ingredients</label>
+                            <textarea
+                                className="form-control"
+                                rows="10"
+                                placeholder="Ingredients, separated, by, commas"
+                                name="ingredients"
+                                onChange={this.handleChange.bind(this)}
+                                value={this.state.recipe.ingredients}></textarea>
+                        </div>
 
-                            <div className="form-group">
-                                <label htmlFor="ingredients">Ingredients</label>
-                                <textarea
-                                    className="form-control"
-                                    rows="10"
-                                    placeholder="Ingredients, separated, by, commas"
-                                    name="ingredients"
-                                    onChange={this.handleChange.bind(this)}
-                                    value={this.state.recipe.ingredients}></textarea>
-                            </div>
-
-                            <button type="submit" className="btn btn-default">Save</button>
-                        </form>
-                    </div>
-                }
-            </div>
-        );
+                        <button type="submit" className="btn btn-default">Save</button>
+                    </form>
+                </div>
+            );
+        } else {
+            return <div>Loading...</div>;
+        }
     }
 }
 
