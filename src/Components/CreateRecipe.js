@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Prompt } from 'react-router-dom';
 import LocalStorage from '../Services/LocalStorage';
 
 class CreateRecipe extends Component {
@@ -10,6 +10,8 @@ class CreateRecipe extends Component {
             ingredients: '',
             redirectToIndex: false
         }
+
+        this.formIsHalfFilled.bind(this);
     }
 
     handleChange(event) {
@@ -23,13 +25,21 @@ class CreateRecipe extends Component {
         this.setState({ redirectToIndex: true });
     }
 
+    formIsHalfFilled() {
+        let name = this.state.name.length >= 1 ? true : false;
+        let ingredients = this.state.ingredients.length >= 1 ? true : false;
+        return name || ingredients;
+    }
+
     render() {
         const { redirectToIndex } = this.state;
-
         if (redirectToIndex) return <Redirect to="/" />;
 
         return (
             <div>
+                <Prompt 
+                    when={this.formIsHalfFilled()}
+                    message="Are you sure you want to leave?" />
                 <h1>Create Recipe</h1>
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <div className="form-group">
