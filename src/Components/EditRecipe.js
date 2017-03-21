@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Prompt } from 'react-router-dom';
 import LocalStorage from '../Services/LocalStorage';
 
 class EditRecipe extends Component {
@@ -29,6 +29,13 @@ class EditRecipe extends Component {
 
         this.setState({ recipe: recipe });
     }
+    
+    formIsHalfFilled() {
+        let recipe = this.state.recipe;
+        let name = recipe.name.length >= 1 ? true : false;
+        let ingredients = recipe.ingredients.length >= 1 ? true : false;
+        return name || ingredients;
+    }
 
     render() {
         const { redirectToIndex } = this.state;
@@ -37,6 +44,9 @@ class EditRecipe extends Component {
 
         return (
             <div>
+                <Prompt 
+                    when={this.formIsHalfFilled()}
+                    message="Are you sure you want to leave? Any changes will be unsaved." />
                 {(this.state.recipe.name) &&
                     <div>
                         <h1>Edit {this.state.recipe.name}</h1>

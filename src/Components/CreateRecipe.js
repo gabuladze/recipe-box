@@ -39,7 +39,7 @@ class CreateRecipe extends Component {
             <div>
                 <Prompt 
                     when={this.formIsHalfFilled()}
-                    message="Are you sure you want to leave?" />
+                    message="Are you sure you want to leave? Any changes will be unsaved." />
                 <h1>Create Recipe</h1>
                 <form onSubmit={this.handleSubmit.bind(this)}>
                     <div className="form-group">
